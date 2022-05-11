@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<div class="text-center h1 text-danger">Register</div>
+<div class="container">
+<form method="POST" enctype="multipart/form-data">
+  <dl>
+    {{ render_field(form.name, class='form-control') }}
+    {{ render_field(form.image, class='form-control') }}
+    
+    
+    </dl>
+  <p><input type=submit value=Register class="btn btn-info">
+</form>
+
+</div>
+
+{% endblock %}
