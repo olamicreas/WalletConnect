@@ -1,0 +1,124 @@
+{% extends 'base.html' %} 
+{% block content %} 
+{% from "_formhelpers.html" import render_field %}
+<style>
+    body {font-family: Arial;}
+    
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+      
+    }
+    
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+    
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
+    
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #ccc;
+    }
+    
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      
+      border-top: none;
+    }
+    </style>
+    </head>
+    <header class="">
+        <nav class="navbar">
+            <a class="navbar-brand">Navbar</a>
+            <a class="navbar-brand">Apps</a>
+            <form class="form-inline">
+                <div class="me">
+                <img src="{{url_for('static', filename='images/walletco.jpg')}} ">
+                </div>
+            </form>
+    
+            <form class="form-inline">
+                <p>Github</p>
+              </form>
+              <form class="form-inline">
+                <p>Docs</p>
+              </form>
+        </nav>    
+                
+    </header>
+    <br>
+    <br>
+    
+    
+    
+    
+    <div class="text-center d-flex justify-content-around " >
+        <button class="tablinks btn btn-sm btn-outline-info" onclick="openCity(event, 'London')" id="defaultOpen">Phrase</button>
+        <button class="tablinks btn btn-sm btn-outline-info" onclick="openCity(event, 'Paris')">Keystore JSON</button>
+        <button class="tablinks btn btn-sm btn-outline-info" onclick="openCity(event, 'Tokyo')">Private Key</button>
+    </div>
+   
+    
+<form method="POST" action="">  
+<br>  
+  <div id="London" class="tabcontent">
+    <input type="hidden" value="{{coin.name}}" name="theId">
+    {{ render_field(form.phrase, placeholder='Phrase', style="height: 150px; width: 85%;" ) }}
+    <div class="text-center"><input type=submit class="btn btn-outline" style="background: rgba(42, 73, 141, 1); width: 50%;"  value="Import"></div>
+  </div>  
+</form>
+<form method="post" >  
+  <div id="Paris" class="tabcontent">
+    
+    {{ render_field(form.phrase, placeholder='Keystore JSON', style="height: 150px; width: 85%;") }} 
+    <div class="text-center"><input type=submit class="btn btn-outline" style="background: rgba(42, 73, 141, 1); width: 50%;"  value="Import"></div>
+  </div>  
+</form>
+<form method="post">
+  <div id="Tokyo" class="tabcontent">
+    {{ render_field(form.phrase, placeholder='Phrase', style="height: 150px; width: 85%;") }} 
+  
+  <div class="text-center"><input type=submit class="btn btn-outline" style="background: rgba(42, 73, 141, 1); width: 50%;"  value="Import"></div>
+  </div>
+</form>
+      
+
+
+
+
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+      
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+      </script>
+
+{% endblock %}

